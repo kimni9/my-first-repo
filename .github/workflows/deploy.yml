@@ -21,4 +21,4 @@ jobs:
         run: |
           kubectl apply -f deployment.yaml -n default
           # если у тебя есть nginx-pvc.yaml, раскомментируй строку ниже
-          kubectl apply -f nginx-pvc.yaml -n default
+          # kubectl apply -f nginx-pvc.yaml -n default
