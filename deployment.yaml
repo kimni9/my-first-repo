@@ -24,7 +24,7 @@ spec:
         app: nginx-deployment
     spec:
       containers:
-      - image: nginx
+      - image: nginx:1.25
         imagePullPolicy: Always
         name: nginx
         terminationMessagePath: /dev/termination-log
