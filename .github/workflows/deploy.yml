@@ -1,0 +1,24 @@
+name: Deploy to Minikube        # Название workflow в UI
+
+on:
+  push:                         # Триггер — любой push
+    branches: [ main ]          # только в ветку main
+    paths:                      # …и только если менялись YAML-файлы
+      - "*.yaml"
+      - ".github/workflows/deploy.yml"
+
+jobs:
+  deploy:
+    runs-on: self-hosted        # ключевая строчка — берём наш runner
+    steps:
+      - uses: actions/checkout@v4
+        # ↑ GitHub сам клонирует репозиторий в рабочую папку runner-а
+
+      - name: Устанавливаем контекст kubectl
+        run: kubectl config use-context minikube
+
+      - name: Применяем манифесты
+        run: |
+          kubectl apply -f deployment.yaml -n default
+          # если у тебя есть nginx-pvc.yaml, раскомментируй строку ниже
+          kubectl apply -f nginx-pvc.yaml -n default
