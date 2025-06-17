@@ -1,0 +1,8 @@
+stages:
+  - test
+
+hello_ci:
+  stage: test
+  script:
+    - echo "Привет из GitLab CI!"
+    - echo "Пайплайн успешно запущен."
